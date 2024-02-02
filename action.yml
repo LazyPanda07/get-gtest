@@ -20,7 +20,7 @@ inputs:
     default: "v1.14.x"
 
   install-path:
-    description: "Build result path(include, lib folders)"
+    description: "Build result path(include, lib folders) relative to github.workspace"
     required: true
 
   force-shared-crt:
@@ -51,7 +51,7 @@ runs:
         cd ${{ inputs.repository-path }}
         mkdir build
         cd build
-        cmake -DCMAKE_INSTALL_PREFIX=${{ inputs.install-path }} -Dgtest_force_shared_crt=${{ inputs.force-shared-crt }} ..
+        cmake -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/${{ inputs.install-path }} -Dgtest_force_shared_crt=${{ inputs.force-shared-crt }} ..
         msbuild /p:Configuration=${{ inputs.build-type }} /p:Platform=x64 INSTALL.vcxproj
 
   - name: Build Google Test Linux
@@ -61,5 +61,5 @@ runs:
         cd ${{ inputs.repository-path }}
         mkdir build
         cd build
-        cmake -DCMAKE_INSTALL_PREFIX=${{ inputs.install-path }} -DCMAKE_BUILD_TYPE=${{ inputs.build-type }} ..
+        cmake -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/${{ inputs.install-path }} -DCMAKE_BUILD_TYPE=${{ inputs.build-type }} ..
         make install
