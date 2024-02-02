@@ -1,2 +1,28 @@
-# get-gtest
-Get Google Test
+Clone and build Google Test in Windows and Linux. MSVC on Windows
+
+# Usage
+See [action.yml](https://github.com/LazyPanda07/get-gtest/blob/master/action.yml)
+
+# Example
+```yaml
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest]
+    
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+    - uses: LazyPanda07/get-gtest@1
+      with:
+        install-path: new-path/make-install
+
+    - name: Print result
+      run: ls new-path/make-install
+```
