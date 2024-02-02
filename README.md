@@ -1,6 +1,32 @@
+# @LazyPanda07/get-gtest
 Clone and build Google Test in Windows and Linux. MSVC on Windows
 
 # Usage
+```yaml
+- uses: LazyPanda07/get-gtest@v1
+  with:
+    # Google Test repository path.
+    # Optional. Default is "gtest"
+    repository-path:
+
+    # Build configuration of Google Test
+    # Optional. Default is "Release"
+    build-type:
+
+    # Google Test branch name to clone
+    # Optional. Default is "v1.14.x"
+    branch-name:
+      
+    # Build result path(include, lib folders) relative to github.workspace
+    # Required.
+    install-path:
+      
+    # Windows specific setting, static or shared CRT build
+    # Optional. Default is "ON"
+    force-shared-crt:
+```
+
+## Source
 See [action.yml](https://github.com/LazyPanda07/get-gtest/blob/master/action.yml)
 
 # Example
