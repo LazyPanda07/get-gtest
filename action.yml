@@ -31,7 +31,7 @@ inputs:
 
 runs: 
   using: "composite"
-  
+
   steps:
   - name: Get Google Test
     uses: actions/checkout@v4
@@ -45,6 +45,7 @@ runs:
     uses: microsoft/setup-msbuild@v2
 
   - name: Build Google Test Windows
+    shell: pwsh
     if: ${{ runner.OS == 'Windows' }}
     run: |
         cd ${{ inputs.repository-path }}
@@ -54,6 +55,7 @@ runs:
         msbuild /p:Configuration=${{ inputs.build-type }} /p:Platform=x64 INSTALL.vcxproj
 
   - name: Build Google Test Linux
+    shell: bash
     if: ${{ runner.OS == 'Linux' }}
     run: |
         cd ${{ inputs.repository-path }}
