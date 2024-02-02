@@ -1,6 +1,9 @@
 name: "Get Google Test"
 description: "Clone and build Google Test in Windows and Linux. MSVC on Windows"
 author: "LazyPanda07"
+branding:
+  icon: "check"
+  color: "green"
 
 
 inputs:
