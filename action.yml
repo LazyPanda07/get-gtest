@@ -1,0 +1,63 @@
+name: "Get Google Test"
+description: "Clone and build Google Test in Windows and Linux. MSVC on Windows"
+author: "LazyPanda07"
+
+
+inputs:
+  repository-path:
+    description: "Google Test repository path"
+    required: false
+    default: "gtest"
+
+  build-type:
+    description: "Build configuration of Google Test"
+    required: false
+    default: "Release"
+
+  branch-name:
+    description: "Google Test branch name to clone"
+    required: false
+    default: "v1.14.x"
+
+  install-path:
+    description: "Build result path(include, lib folders)"
+    required: true
+
+  force-shared-crt:
+    description: "Windows specific setting, static or shared CRT build"
+    required: false
+    default: "ON"
+
+
+runs: 
+  using: "composite"
+  
+  steps:
+  - name: Get Google Test
+    uses: actions/checkout@v4
+    with:
+      repository: google/googletest
+      ref: ${{ inputs.branch-name }}
+      path: ${{ inputs.repository-path }}
+
+  - name: Add MSBuild to PATH
+    if: ${{ runner.OS == 'Windows' }}
+    uses: microsoft/setup-msbuild@v2
+
+  - name: Build Google Test Windows
+    if: ${{ runner.OS == 'Windows' }}
+    run: |
+        cd ${{ inputs.repository-path }}
+        mkdir build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=${{ inputs.install-path }} -Dgtest_force_shared_crt=${{ inputs.force-shared-crt }} ..
+        msbuild /p:Configuration=${{ inputs.build-type }} /p:Platform=x64 INSTALL.vcxproj
+
+  - name: Build Google Test Linux
+    if: ${{ runner.OS == 'Linux' }}
+    run: |
+        cd ${{ inputs.repository-path }}
+        mkdir build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=${{ inputs.install-path }} -DCMAKE_BUILD_TYPE=${{ inputs.build-type }} ..
+        make install
