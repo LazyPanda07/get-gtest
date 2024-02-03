@@ -9,19 +9,19 @@ Clone and build Google Test in Windows and Linux. MSVC on Windows
     # Optional. Default is "gtest"
     repository-path:
 
-    # Build configuration of Google Test
+    # Build configuration of Google Test.
     # Optional. Default is "Release"
     build-type:
 
-    # Google Test branch name to clone
+    # Google Test branch name to clone.
     # Optional. Default is "v1.14.x"
     branch-name:
       
-    # Build result path(include, lib folders) relative to github.workspace
+    # Build result path(include, lib folders) relative to github.workspace.
     # Required.
     install-path:
       
-    # Windows specific setting, static or shared CRT build
+    # Windows specific setting, static or shared CRT build.
     # Optional. Default is "ON"
     force-shared-crt:
 ```
