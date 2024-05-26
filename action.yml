@@ -26,6 +26,11 @@ inputs:
     description: "Build result path(include, lib folders) relative to github.workspace"
     required: true
 
+  compiler:
+    description: "Compiler name only for Linux"
+    required: false
+    default: gcc
+
   force-shared-crt:
     description: "Windows specific setting, static or shared CRT build"
     required: false
@@ -60,6 +65,9 @@ runs:
   - name: Build Google Test Linux
     shell: bash
     if: ${{ runner.OS == 'Linux' }}
+    env:
+      CC=${{ inputs.compiler }}
+      CXX=${{ inputs.compiler }}
     run: |
         cd ${{ inputs.repository-path }}
         mkdir build
