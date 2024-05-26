@@ -67,7 +67,6 @@ runs:
     if: ${{ runner.OS == 'Linux' }}
     env:
       CC: ${{ inputs.compiler }}
-      CXX: ${{ inputs.compiler }}
     run: |
         cd ${{ inputs.repository-path }}
         mkdir build
