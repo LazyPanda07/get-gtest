@@ -3,7 +3,7 @@ Clone and build Google Test in Windows and Linux. MSVC on Windows
 
 # Usage
 ```yaml
-- uses: LazyPanda07/get-gtest@v1.1
+- uses: LazyPanda07/get-gtest@v1.2
   with:
     # Google Test repository path.
     # Optional. Default is "gtest"
@@ -14,7 +14,7 @@ Clone and build Google Test in Windows and Linux. MSVC on Windows
     build-type:
 
     # Google Test branch name to clone.
-    # Optional. Default is "v1.14.x"
+    # Optional. Default is "v1.17.x"
     branch-name:
       
     # Build result path(include, lib folders) relative to github.workspace.
@@ -49,7 +49,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - uses: LazyPanda07/get-gtest@v1.1
+    - uses: LazyPanda07/get-gtest@v1.2
       with:
         install-path: new-path/make-install
 

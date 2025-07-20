@@ -20,7 +20,7 @@ inputs:
   branch-name:
     description: "Google Test branch name to clone"
     required: false
-    default: "v1.14.x"
+    default: "v1.17.x"
 
   install-path:
     description: "Build result path(include, lib folders) relative to github.workspace"
